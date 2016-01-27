@@ -24,9 +24,7 @@ AliAnalysisTask* runMuMu(TString runMode,
 {
     //Copy parfile and macro
     // gSystem->Exec("cp $MACRODIR/newVaf/AliceVaf.par AliceVaf.par"); //Copy baseline    
-    gROOT->LoadMacro(gSystem->ExpandPathName("$TASKDIR/runTaskUtilities.C"));
-    if(!IsPodMachine(analysisMode)) gSystem->Exec("cp $MACRODIR/newVaf/AliceVaf.par AliceVaf.par");
-     
+    gROOT->LoadMacro(gSystem->ExpandPathName("$TASKDIR/runTaskUtilities.C"));     
      
     // Macro to connect to proof. First argument useless for saf3
     SetupAnalysis(runMode,analysisMode,inputName,inputOptions,softVersions,analysisOptions, "libPWGmuon.so",". $ALICE_ROOT/include $ALICE_PHYSICS/include");
@@ -44,9 +42,9 @@ AliAnalysisTask* runMuMu(TString runMode,
     
     // Load centrality task
     // //==============================================================================
-    gROOT->LoadMacro("$ALICE_PHYSICS/OADB/COMMON/MULTIPLICITY/macros/AddTaskMultSelection.C");
-    AliMultSelectionTask * task = AddTaskMultSelection(kFALSE); // user
-    task -> SetAlternateOADBforEstimators ("LHC15o");
+    // gROOT->LoadMacro("$ALICE_PHYSICS/OADB/COMMON/MULTIPLICITY/macros/AddTaskMultSelection.C");
+    // AliMultSelectionTask * task = AddTaskMultSelection(kFALSE); // user
+    // task -> SetAlternateOADBforEstimators ("LHC15o");
     
     // gROOT->LoadMacro("/Users/audurier/alicesw/aliphysics/mumu/src/PWG/muon/AddTaskMuMuTrain.C");
     gROOT->LoadMacro("$ALICE_PHYSICS/PWG/muon/AddTaskMuMuMinvBA.C");
